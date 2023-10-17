@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(90deg, #E6E6E6, #F3F3F3);
+    background-size: 200% 100%;
+    /* animation: gradientAnimation 4s linear infinite; */
+}
+
+/* @keyframes gradientAnimation {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+} */
+
+
+.container {
+    width: 420px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+    margin: 4px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.delete {
+    background-color: #ff5555; /* Red background color for delete button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 8px;
+    margin-right: 4px;
+    align-self:flex-end;
+}
+
+.complete {
+    background-color: #4CAF50; /* Green background color for complete button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 8px;
+    align-self:flex-end;
+}
+
+.form-group select {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 30%;
+    background-color: #f7f7f7;
+    color: #333;
+    cursor: pointer;
+}
+
+.form-group select:hover {
+    background-color: #eaeaea;
+}
+
+/* Style the options within the select dropdowns */
+.form-group select option {
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.form-group select option:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Style the button */
+.form-group button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple To-Do list</h1>
+        <form id="subscription">
+            <div class="form-group">
+                <input type="text" id="taskInput" name="title" placeholder="Add a new task">
+            </div>
+            <div class="form-group">
+                <select id="priority" name="priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <label for="emoji">Emoji:</label>
+                <select id="emoji" name="emoji">
+                    <option value="grinning">😃</option>
+                    <option value="ok_hand">👌</option>
+                    <option value="plate_with_cutlery">🍽️</option>
+                    <option value="baby_bottle">🍼</option>
+                    <option value="world_map">🗺️</option>
+                    <option value="guide_dog">🦮</option>
+                    <option value="wc">🚾</option>
+                    <option value="hankey">💩</option>
+                </select>
+            </div>
+            <input type="submit" id="addTask" value="Add" />
+        </form>
+        <ul id="taskList">
+            <!-- Tasks will be added here dynamically -->
+        </ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
