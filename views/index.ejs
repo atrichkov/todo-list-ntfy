@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="neoBrutalism.css" />
+    <link rel="stylesheet" href="styles.css" />
     <title>To-Do List</title>
 </head>
 <body>
@@ -11,16 +12,16 @@
         <h1>Simple To-Do list</h1>
         <form id="subscription">
             <div class="form-group">
-                <input type="text" id="taskInput" name="title" placeholder="Add a new task">
+                <input type="text" id="taskInput" name="title" class="nb-input default" placeholder="Add a new task">
             </div>
             <div class="form-group">
-                <select id="priority" name="priority">
+                <select id="priority" class="nb-input default" name="priority">
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
                 <label for="emoji">Emoji:</label>
-                <select id="emoji" name="emoji">
+                <select id="emoji" class="nb-input default" name="emoji">
                     <option value="grinning">😃</option>
                     <option value="ok_hand">👌</option>
                     <option value="plate_with_cutlery">🍽️</option>
@@ -31,7 +32,7 @@
                     <option value="hankey">💩</option>
                 </select>
             </div>
-            <input type="submit" id="addTask" value="Add" />
+            <input type="submit" id="addTask" value="Add" class="nb-button green" />
         </form>
         <ul id="taskList">
             <!-- Tasks will be added here dynamically -->

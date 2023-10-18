@@ -26,9 +26,7 @@ h1 {
 }
 
 input[type="text"] {
-    width: 70%;
-    padding: 8px;
-    border: 1px solid #ccc;
+    width: 73%;
     border-radius: 4px;
 }
 

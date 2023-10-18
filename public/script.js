@@ -12,7 +12,7 @@ const emojis = {
 const priorities = {
     low: '#A0D8E5',
     medium: '#27AE60',
-    high: '#E74C3C',
+    high: '#ff5555',
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,15 +37,15 @@ document.addEventListener('DOMContentLoaded', function () {
             taskItem.innerHTML = `
                 <span>${emojis[emoji]} ${title}</span>
                 <div>
-                    <button class="delete">Delete</button>
-                    <button class="complete">Complete</button>
+                    <button id="delete" class="nb-button orange">Delete</button>
+                    <button id="complete" class="nb-button green">Complete</button>
                 </div>
             `;
 
             taskList.appendChild(taskItem);
 
-            const deleteButton = taskItem.querySelector('.delete');
-            const completeButton = taskItem.querySelector('.complete');
+            const deleteButton = taskItem.querySelector('#delete');
+            const completeButton = taskItem.querySelector('#complete');
 
             deleteButton.addEventListener('click', function () {
                 taskItem.remove();
@@ -53,10 +53,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             completeButton.addEventListener('click', function () {
                 taskItem.classList.toggle('completed');
+
+                fetch('complete', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
             });
 
-            fetch('http://127.0.0.1:3000/create', {
-                method: 'POST', // PUT works too
+            fetch('create', {
+                method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json',
