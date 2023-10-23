@@ -35,6 +35,15 @@
             <input type="submit" id="addTask" value="Add" class="nb-button green" />
         </form>
         <ul id="taskList">
+            <% for(var i = 0; i < todos.length; i++) { %>
+                <li>
+                    <span><%= todos[i].tag %> <%= todos[i].title %></span>
+                    <div>
+                        <button id="delete" class="nb-button orange">Delete</button>
+                        <button id="complete" class="nb-button green">Complete</button>
+                    </div>
+                </li>
+             <% } %>
             <!-- Tasks will be added here dynamically -->
         </ul>
     </div>

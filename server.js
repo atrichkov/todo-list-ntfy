@@ -3,6 +3,8 @@
 const path = require('node:path');
 const express = require('express');
 const cors = require('cors');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('todos.db');
 const app = express();
 const port = process.env.PORT || 3000;
 const NFTY_HOST = process.env.NFTY_HOST;
@@ -13,8 +15,16 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-    res.render('index', { nftHost: process.env.NFTY_HOST });
+app.get('/', async (req, res) => {
+    const results = await new Promise((resolve, reject) => {
+        const list = [];
+        db.all('SELECT title, priority, tags FROM todos', (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        });
+    });
+
+    res.render('index', { nftHost: process.env.NFTY_HOST, todos: results });
 });
 
 function sendNotification(body, headers, topic = 'todo') {
@@ -32,6 +42,15 @@ app.post('/create', (req, res) => {
         Title: title,
         Priority: priority,
         Tags: emoji,
+    });
+
+    db.serialize(() => {
+        db.run('CREATE TABLE IF NOT EXISTS todos (title TEXT, priority INTEGER, tags TEXT)');
+        const stmt = db.prepare('INSERT INTO todos VALUES (?, ?, ?)');
+
+        stmt.run(title, priority, emoji);
+
+        stmt.finalize();
     });
 
     res.json({ message: 'Task created successfully' });
