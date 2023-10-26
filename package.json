@@ -5,8 +5,8 @@
     "main": "send.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "npx eslint",
-        "lint-fix": "npx eslint-fix",
+        "eslint": "eslint .",
+        "eslint-fix": "eslint --fix .",
         "dev": "nodemon --env-file=.env server",
         "start": "node --env-file=.env server"
     },
