@@ -8,14 +8,11 @@ services:
       - serve
     environment:
       - TZ=UTC # optional: set desired timezone
-    user: UID:GID # optional: replace with your own user/group or uid/gid
+    # user: UID:GID # optional: replace with your own user/group or uid/gid
     volumes:
       - /var/cache/ntfy:/var/cache/ntfy
       - /etc/ntfy:/etc/ntfy
-    ports:
-      - 80:80
     healthcheck:
-      # optional: remember to adapt the host:port to your environment
       test:
         [
           "CMD-SHELL",
@@ -29,8 +26,9 @@ services:
   app:
     container_name: todo-list-nfty
     build: .
-    restart_policy:   
-      condition: on-failure   
-      max-attempts: 3
+    ports:
+      - 3000:3000
+    depends_on:
+      - ntfy
     volumes:
       - "./src:/app/src"

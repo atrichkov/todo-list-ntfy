@@ -2,13 +2,13 @@
     "name": "nfty",
     "version": "1.0.0",
     "description": "",
-    "main": "send.js",
+    "main": "src/server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "eslint": "eslint .",
         "eslint-fix": "eslint --fix .",
-        "dev": "nodemon --env-file=.env server",
-        "start": "node --env-file=.env server"
+        "dev": "nodemon --env-file=.env src/server",
+        "start": "node --env-file=.env src/server"
     },
     "keywords": [],
     "author": "",
