@@ -34,6 +34,17 @@ function sendNotification(body, headers, topic = 'todo') {
     });
 }
 
+app.get('/list', async (req, res) => {
+    const results = await new Promise((resolve, reject) => {
+        db.all('SELECT id, title, priority, tags FROM todos', (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        });
+    });
+
+    res.json({ data: results });
+});
+
 app.post('/create', (req, res) => {
     const { title, priority, emoji } = req.body;
 
@@ -68,11 +79,21 @@ app.post('/complete', (req, res) => {
     res.json({ message: 'Task completed successfully' });
 });
 
-app.get('/delete', (req, res) => {
+app.delete('/delete', (req, res) => {
     sendNotification('removed', {
         Title: title,
         Priority: 'urgent',
         Tags: 'warning,skull',
+    });
+
+    console.log(req.body);
+
+    db.serialize(() => {
+        const stmt = db.prepare('DELETE FROM todos WHERE id = ?');
+
+        stmt.run(req.body.id);
+
+        stmt.finalize();
     });
 
     res.json({ message: 'Task deleted successfully' });
