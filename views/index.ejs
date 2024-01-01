@@ -8,20 +8,20 @@
     <title>To-Do List</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="vapp">
         <h1>Simple To-Do list</h1>
         <form id="subscription">
             <div class="form-group">
-                <input type="text" id="taskInput" name="title" class="nb-input default" placeholder="Add a new task">
+                <input type="text" id="taskInput" name="title" v-model="title" class="nb-input default" placeholder="Add a new task">
             </div>
             <div class="form-group">
-                <select id="priority" class="nb-input default" name="priority">
+                <select id="priority" class="nb-input default" name="priority" v-model="priority">
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
                 <label for="emoji">Emoji:</label>
-                <select id="emoji" class="nb-input default" name="emoji">
+                <select id="emoji" class="nb-input default" name="emoji" v-model="emoji">
                     <option value="grinning">😃</option>
                     <option value="ok_hand">👌</option>
                     <option value="plate_with_cutlery">🍽️</option>
@@ -32,21 +32,20 @@
                     <option value="hankey">💩</option>
                 </select>
             </div>
-            <input type="submit" id="addTask" value="Add" class="nb-button green" />
+            <input type="submit" value="Add" class="nb-button green" @click.prevent="addTodo" />
         </form>
-        <ul id="taskList">
-            <% for(var i = 0; i < todos.length; i++) { %>
-                <li>
-                    <span><%= todos[i].tag %> <%= todos[i].title %></span>
-                    <div>
-                        <button id="delete" class="nb-button orange">Delete</button>
-                        <button id="complete" class="nb-button green">Complete</button>
-                    </div>
-                </li>
-             <% } %>
-            <!-- Tasks will be added here dynamically -->
+        <ul id="taskList" v-for="(item, key, index) in todosList">
+            <li :class="{ completed: false }">
+                <span>{{ item.emoji }} {{ item.title }} | {{ item.completed }}</span>
+                <div>
+                    <button class="nb-button orange" @click="remove(item.id)">Delete</button>
+                    <button class="nb-button green" @click="complete(key)">Complete</button>
+                </div>
+            </li>
         </ul>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
     <script src="script.js"></script>
 </body>
 </html>
