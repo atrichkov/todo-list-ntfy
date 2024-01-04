@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,14 @@
     <link rel="stylesheet" href="styles.css" />
     <title>To-Do List</title>
 </head>
+
 <body>
     <div class="container" id="vapp">
         <h1>Simple To-Do list</h1>
         <form id="subscription">
             <div class="form-group">
-                <input type="text" id="taskInput" name="title" v-model="title" class="nb-input default" placeholder="Add a new task">
+                <input type="text" id="taskInput" name="title" v-model="title" class="nb-input default"
+                    placeholder="Add a new task">
             </div>
             <div class="form-group">
                 <select id="priority" class="nb-input default" name="priority" v-model="priority">
@@ -46,6 +49,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vuex"></script>
-    <script src="script.js"></script>
+    <script src="script.js" lang="ts"></script>
 </body>
+
 </html>

@@ -1,23 +1,22 @@
-'use strict';
-var Emojis;
-(function (Emojis) {
-    Emojis["grinning"] = "\uD83D\uDE03";
-    Emojis["ok_hand"] = "\uD83D\uDC4C";
-    Emojis["plate_with_cutlery"] = "\uD83C\uDF7D\uFE0F";
-    Emojis["baby_bottle"] = "\uD83C\uDF7C";
-    Emojis["world_map"] = "\uD83D\uDDFA\uFE0F";
-    Emojis["guide_dog"] = "\uD83E\uDDAE";
-    Emojis["wc"] = "\uD83D\uDEBE";
-    Emojis["hankey"] = "\uD83D\uDCA9";
-})(Emojis || (Emojis = {}));
-;
-var Priorities;
-(function (Priorities) {
-    Priorities["low"] = "#A0D8E5";
-    Priorities["medium"] = "#27AE60";
-    Priorities["high"] = "#ff5555";
-})(Priorities || (Priorities = {}));
-;
+'use strict'
+
+enum Emojis {
+    grinning = '😃',
+    ok_hand = '👌',
+    plate_with_cutlery = '🍽️',
+    baby_bottle = '🍼',
+    world_map = '🗺️',
+    guide_dog = '🦮',
+    wc = '🚾',
+    hankey = '💩',
+};
+
+enum Priorities {
+    low = '#A0D8E5',
+    medium = '#27AE60',
+    high = '#ff5555',
+};
+
 // @ts-ignore
 const vueApp = new Vue({
     el: '#vapp',
@@ -36,14 +35,15 @@ const vueApp = new Vue({
             });
     },
     methods: {
-        addTodo(e) {
+        addTodo(e: Event) {
             // @ts-ignore
             if (this.title !== '') {
-                const item = {
+                const item: { title: string, priority: string, emoji: string } = {
                     title: this.title,
                     priority: this.priority,
                     emoji: this.emoji,
                 };
+
                 fetch('/create', {
                     method: 'POST',
                     headers: {
@@ -58,7 +58,7 @@ const vueApp = new Vue({
                     });
             }
         },
-        complete(key) {
+        complete(key: any) {
             // TODO
             this.todosList[key].completed = 'true';
             // fetch('complete', {
@@ -69,7 +69,7 @@ const vueApp = new Vue({
             //     },
             // });
         },
-        remove(id) {
+        remove(id: string) {
             console.log('delete', id);
             fetch('/delete', {
                 method: 'DELETE',
@@ -83,7 +83,7 @@ const vueApp = new Vue({
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    this.todosList = this.todosList.filter((item) => item.id !== id);
+                    this.todosList = this.todosList.filter((item: { id: string }) => item.id !== id);
                     console.info(data);
                 });
         },
